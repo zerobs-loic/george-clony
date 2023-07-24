@@ -45,7 +45,7 @@ jobs:
         id: loop_step
         run: |
           counter=0
-          max_loops=50
+          max_loops=100
           target="%s"
           while [ $counter -lt 100 ]; do
             echo "Running loop iteration $((counter + 1))..."
