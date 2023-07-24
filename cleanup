@@ -1,0 +1,5 @@
+
+
+git rm -f .github/workflows/* 
+git commit -m "automated cleanup `date`" .github
+
