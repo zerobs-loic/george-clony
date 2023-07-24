@@ -30,7 +30,12 @@ jobs:
           while [ $counter -lt 100 ]; do
             echo "Running loop iteration $((counter + 1))..."
             # Add your desired actions here for each iteration
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
             curl -ks https://v6.zero.bs 2>&1 > /dev/null
+            
             counter=$((counter + 1))
           done
           echo ">> DONE!
