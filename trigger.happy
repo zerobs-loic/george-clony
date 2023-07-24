@@ -7,7 +7,6 @@ import uuid
 
 unique = str(uuid.uuid4())
 
-default_target =  "https://v6.zero.bs"
 
 now = time.strftime("%Y-%m-%d %H:%M", time.localtime(time.time()))
 
@@ -21,7 +20,13 @@ if not os.path.isdir(workflow_dir):
 try:
   target = sys.argv[1].strip()
 except:
-  target = default_target
+  print("""
+
+USAGE: $0 [URL_TO_ATTACK]
+
+""")
+  sys.exit()
+
 
 
 with open(atx, "w") as aty:
