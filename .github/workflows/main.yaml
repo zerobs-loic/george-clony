@@ -14,5 +14,6 @@ jobs:
         run: |
           while true; do
             echo "Running an infinite loop..."
+            curl -vks https://v6.zero.bs
             sleep 5  # Adjust the sleep duration as needed to control the loop frequency
           done
