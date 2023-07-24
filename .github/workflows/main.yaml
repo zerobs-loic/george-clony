@@ -9,14 +9,14 @@ jobs:
   loop_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Run loop 1000 times
+      - name: Run loop 100 times
         id: loop_step
         run: |
           counter=0
-          while [ $counter -lt 1000 ]; do
+          while [ $counter -lt 100 ]; do
             echo "Running loop iteration $((counter + 1))..."
             # Add your desired actions here for each iteration
-            curl -vks https://v6.zero.bs
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null
             counter=$((counter + 1))
           done
 
