@@ -9,7 +9,13 @@ unique = str(uuid.uuid4())
 
 now = time.strftime("%Y-%m-%d %H:%M", time.localtime(time.time()))
 
-atx = ".github/workflows/attack-%s.yaml" % unique
+workflow_dir = ".github/workflows"
+
+atx = "%s/attack-%s.yaml" % (workflow_dir, unique)
+
+if not os.path.isdir(workflow_dir):
+  os.makedirs(workflow_dir, exist_ok=True)
+
 
 with open(atx, "w") as aty:
   aty.write("""name: Loop 100 Times %s
