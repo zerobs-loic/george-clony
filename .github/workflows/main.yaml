@@ -1,4 +1,4 @@
-name: Infinite Loop Example
+name: Loop 1000 Times Example
 
 on:
   push:
@@ -6,14 +6,17 @@ on:
       - main
 
 jobs:
-  infinite_loop_job:
+  loop_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Run infinite loop
-        id: infinite_loop_step
+      - name: Run loop 1000 times
+        id: loop_step
         run: |
-          while true; do
-            echo "Running an infinite loop..."
+          counter=0
+          while [ $counter -lt 1000 ]; do
+            echo "Running loop iteration $((counter + 1))..."
+            # Add your desired actions here for each iteration
             curl -vks https://v6.zero.bs
-            sleep 5  # Adjust the sleep duration as needed to control the loop frequency
+            counter=$((counter + 1))
           done
+
