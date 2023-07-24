@@ -1,0 +1,26 @@
+name: Loop 500 Times 07ff0d2a-1b00-426c-9955-aa7bd8d5fcfb
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  loop_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run loop 500 times 07ff0d2a-1b00-426c-9955-aa7bd8d5fcfb
+        id: loop_step
+        run: |
+          counter=0
+          while [ $counter -lt 500 ]; do
+            echo "Running loop iteration $((counter + 1))..."
+            # Add your desired actions here for each iteration
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null
+            counter=$((counter + 1))
+          done
+          echo ">> DONE!
+
+
+
+
