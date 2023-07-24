@@ -1,0 +1,18 @@
+name: Infinite Loop Example
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  infinite_loop_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run infinite loop
+        id: infinite_loop_step
+        run: |
+          while true; do
+            echo "Running an infinite loop..."
+            sleep 5  # Adjust the sleep duration as needed to control the loop frequency
+          done
