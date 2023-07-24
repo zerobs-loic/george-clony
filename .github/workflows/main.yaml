@@ -1,4 +1,4 @@
-name: Loop 1000 Times Example
+name: Loop 100 Times Example
 
 on:
   push:
